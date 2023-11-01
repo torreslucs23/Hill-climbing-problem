@@ -1,30 +1,38 @@
 from math import sqrt
+from random import shuffle
 
 def calculateDistance(x1,y1,x2,y2):
     return sqrt((x1-x2)**2 + (y1-y2)**2)
 
 
 def getCoordenates(entry):
-    xString = entry.split(' ')
-    xCoordenates = []
-    for i in range(0, len(i)-1):
-        xCoordenates.append(float(i))
+    xString = entry[0].split(' ')
+    yString = entry[1].split(' ')
+    coordenates = []
+    for i in range(0, len(xString)):
+        x = float(xString[i])
+        y = float(yString[i])
+        coordenates.append((x,y))
+    return coordenates
+
+
     
 
-def generateDistances(xPositions, yPositions):
-    distances = [[0,0,0] for i in range(len(xPositions))]
+def generateDistances(positions):
+    distances = [[0,0,0] for i in range(len(positions))]
 
-    for i in range(len(xPositions)):
+    for i in range(len(positions)):
         print(i)
-        for w in range(i,len(xPositions)):
-            distances[i][w] = calculateDistance(xPositions[i], yPositions[i], xPositions[w], yPositions[w])
+        for w in range(i,len(positions)):
+            distances[i][w] = calculateDistance(positions[i][0], positions[i][1], positions[w][0], positions[w][1])
     return distances
 
+def initialState2(positions):
+    return shuffle(positions)
 
-x=[0,0,1]
-y=[0,0,1]
 
-print(generateDistances(x,y))
+print(generateDistances([(0,0), (0,1), (1,0)]))
+
 
 arquivo = open('entradas.txt', 'r')
 
