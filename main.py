@@ -30,12 +30,29 @@ def generateDistances(positions):
 def initialState2(positions):
     return shuffle(positions)
 
+def operation1(positions, id1, id2):
+    x = positions[id1]
+    positions[id1] = positions[id2]
+    positions[id2] = x
+    return positions
+
+def operation2(positions, id1, id2):
+    new_positions = []
+    for i in range(id1):
+        new_positions.append(positions[i])
+    for i in range(id2, id1-1, -1):
+        new_positions.append(positions[i])
+    for i in range(id2+1, len(positions)):
+        new_positions.append(positions[i])
+    
+    return new_positions
+
 
 print(generateDistances([(0,0), (0,1), (1,0)]))
 
 
-arquivo = open('entradas.txt', 'r')
+archive = open('entradas.txt', 'r')
 
-s = arquivo.readlines()
+s = archive.readlines()
 
 print(s)
