@@ -1,5 +1,6 @@
 from math import sqrt
 from random import shuffle
+from random import randint
 
 
 # calculate the euclidian distance
@@ -72,25 +73,68 @@ coordenates = getCoordenates(archive.readlines())
 
 #variation1: initial state 1 with operator 1 and no random neighbor
 def variation1(coordenates):
-    aux = []
-    cost = 0
-    while True:
-        flag = False
-        cost = calculateCost(coordenates)
-        print(cost)
-        for i in range(len(coordenates)):
-            for w in range(i, len(coordenates)):
-                aux = operator1(coordenates, i, w)
-                if calculateCost(aux) < cost:
-                    coordenates = aux.copy()
-                    flag = True
-                    cost = calculateCost(coordenates)
+    for i in range(30):
+        coord = coordenates.copy()
+        aux = []
+        cost = 0
+        while True:
+            flag = False
+            cost = calculateCost(coord)
+            print(cost)
+            for i in range(len(coord)):
+                for w in range(i, len(coord)):
+                    aux = operator1(coord, i, w)
+                    if calculateCost(aux) < cost:
+                        coord = aux.copy()
+                        flag = True
+                        cost = calculateCost(coord)
+                        break
+                if flag == True:
                     break
-            if flag == True:
+            if flag == False:
                 break
-        if flag == False:
-            break
-    return (cost, coordenates)
+        print(cost, coord)
+        print("")
+
+
+#variation 2: initial state 1 with operator 1 and random neighbor
+def variation2(coordenates):
+    for i in range(30):
+        coord = coordenates.copy()
+        aux = []
+        cost = 0
+
+        #n_cities just calculate the lenght of coordenates(cities)
+        n_cities = len(coord)
+
+        #this is a list of visited indexes for cut repetition on the random states
+        visited_indexes = []
+        while True:
+            cost = calculateCost(coord)
+            flag = False
+            print(cost)
+            while len(visited_indexes) < (n_cities**2 - n_cities)/2:
+                x = randint(0, n_cities-1)
+                y = randint(0, n_cities-1)
+                if sorted((x,y)) in visited_indexes:
+                    continue
+
+                visited_indexes.append(sorted((x,y)))
+                aux = operator1(coord, x, y)
+                if calculateCost(aux) < cost:
+                    coord = aux.copy()
+                    flag = True
+                    break
+            if flag == False:
+                break
+        print(coord,cost)
+        print(" ")
+
+
+
+#variation 3: initial state 1 with operator 1 and random neighbor
+
+
 
 
 print(variation1(coordenates))
