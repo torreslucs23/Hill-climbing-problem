@@ -132,7 +132,7 @@ def variation2(coordenates):
 
 
 
-#variation 3: initial state 1 with operator 1 and random neighbor
+#variation 3: initial state 1 with operator 2 and no random neighbor
 #notice that this variation is similar to variation 1, but just replacing the operator 2 above operator 1
 def variation3(coordenates):
     for i in range(30):
@@ -159,9 +159,42 @@ def variation3(coordenates):
         print("")
 
 
+#variation 4: initial state 1 with operator 2 and random neighbor
+#notice that this variation is similar to variation 2, but just replacing the operator 2 above operator 1
+def variation4(coordenates):
+    for i in range(30):
+        coord = coordenates.copy()
+        aux = []
+        cost = 0
+
+        #n_cities just calculate the lenght of coordenates(cities)
+        n_cities = len(coord)
+
+        #this is a list of visited indexes for cut repetition on the random states
+        visited_indexes = []
+        while True:
+            cost = calculateCost(coord)
+            flag = False
+            print(cost)
+            while len(visited_indexes) < (n_cities**2 - n_cities)/2:
+                x = randint(0, n_cities-1)
+                y = randint(0, n_cities-1)
+                if sorted((x,y)) in visited_indexes:
+                    continue
+
+                visited_indexes.append(sorted((x,y)))
+                aux = operator2(coord, x, y)
+                if calculateCost(aux) < cost:
+                    coord = aux.copy()
+                    flag = True
+                    break
+            if flag == False:
+                break
+        print(coord,cost)
+        print(" ")
 
 
-print(variation1(coordenates))
+print(variation4(coordenates))
 
 
 
