@@ -133,6 +133,30 @@ def variation2(coordenates):
 
 
 #variation 3: initial state 1 with operator 1 and random neighbor
+#notice that this variation is similar to variation 1, but just replacing the operator 2 above operator 1
+def variation3(coordenates):
+    for i in range(30):
+        coord = coordenates.copy()
+        aux = []
+        cost = 0
+        while True:
+            flag = False
+            cost = calculateCost(coord)
+            print(cost)
+            for i in range(len(coord)):
+                for w in range(i, len(coord)):
+                    aux = operator2(coord, i, w)
+                    if calculateCost(aux) < cost:
+                        coord = aux.copy()
+                        flag = True
+                        cost = calculateCost(coord)
+                        break
+                if flag == True:
+                    break
+            if flag == False:
+                break
+        print(cost, coord)
+        print("")
 
 
 
