@@ -73,126 +73,124 @@ coordenates = getCoordenates(archive.readlines())
 
 #variation1: initial state 1 with operator 1 and no random neighbor
 def variation1(coordenates):
-    for i in range(30):
-        coord = coordenates.copy()
-        aux = []
-        cost = 0
-        while True:
-            flag = False
-            cost = calculateCost(coord)
-            print(cost)
-            for i in range(len(coord)):
-                for w in range(i, len(coord)):
-                    aux = operator1(coord, i, w)
-                    if calculateCost(aux) < cost:
-                        coord = aux.copy()
-                        flag = True
-                        cost = calculateCost(coord)
-                        break
-                if flag == True:
+    coord = coordenates.copy()
+    aux = []
+    cost = 0
+    while True:
+        flag = False
+        cost = calculateCost(coord)
+        print(cost)
+        for i in range(len(coord)):
+            for w in range(i, len(coord)):
+                aux = operator1(coord, i, w)
+                if calculateCost(aux) < cost:
+                    coord = aux.copy()
+                    flag = True
+                    cost = calculateCost(coord)
                     break
-            if flag == False:
+            if flag == True:
                 break
-        print(cost, coord)
-        print("")
+        if flag == False:
+            break
+    print(cost, coord)
+    print("")
 
 
 #variation 2: initial state 1 with operator 1 and random neighbor
 def variation2(coordenates):
-    for i in range(30):
-        coord = coordenates.copy()
-        aux = []
-        cost = 0
+    coord = coordenates.copy()
+    aux = []
+    cost = 0
 
-        #n_cities just calculate the lenght of coordenates(cities)
-        n_cities = len(coord)
+    #n_cities just calculate the lenght of coordenates(cities)
+    n_cities = len(coord)
 
-        #this is a list of visited indexes for cut repetition on the random states
-        visited_indexes = []
-        while True:
-            cost = calculateCost(coord)
-            flag = False
-            print(cost)
-            while len(visited_indexes) < (n_cities**2 - n_cities)/2:
-                x = randint(0, n_cities-1)
-                y = randint(0, n_cities-1)
-                if sorted((x,y)) in visited_indexes:
-                    continue
+    #this is a list of visited indexes for cut repetition on the random states
+    visited_indexes = []
+    while True:
+        cost = calculateCost(coord)
+        flag = False
+        print(cost)
+        while len(visited_indexes) < (n_cities**2 - n_cities)/2:
+            x = randint(0, n_cities-1)
+            y = randint(0, n_cities-1)
+            if sorted((x,y)) in visited_indexes:
+                continue
 
-                visited_indexes.append(sorted((x,y)))
-                aux = operator1(coord, x, y)
-                if calculateCost(aux) < cost:
-                    coord = aux.copy()
-                    flag = True
-                    break
-            if flag == False:
+            visited_indexes.append(sorted((x,y)))
+            aux = operator1(coord, x, y)
+            if calculateCost(aux) < cost:
+                coord = aux.copy()
+                flag = True
                 break
-        print(coord,cost)
-        print(" ")
+        if flag == False:
+            break
+    print(coord,cost)
+    print(" ")
 
 
 
 #variation 3: initial state 1 with operator 2 and no random neighbor
 #notice that this variation is similar to variation 1, but just replacing the operator 2 above operator 1
 def variation3(coordenates):
-    for i in range(30):
-        coord = coordenates.copy()
-        aux = []
-        cost = 0
-        while True:
-            flag = False
-            cost = calculateCost(coord)
-            print(cost)
-            for i in range(len(coord)):
-                for w in range(i, len(coord)):
-                    aux = operator2(coord, i, w)
-                    if calculateCost(aux) < cost:
-                        coord = aux.copy()
-                        flag = True
-                        cost = calculateCost(coord)
-                        break
-                if flag == True:
+    coord = coordenates.copy()
+    aux = []
+    cost = 0
+    while True:
+        flag = False
+        cost = calculateCost(coord)
+        print(cost)
+        for i in range(len(coord)):
+            for w in range(i, len(coord)):
+                aux = operator2(coord, i, w)
+                if calculateCost(aux) < cost:
+                    coord = aux.copy()
+                    flag = True
+                    cost = calculateCost(coord)
                     break
-            if flag == False:
+            if flag == True:
                 break
-        print(cost, coord)
-        print("")
+        if flag == False:
+            break
+    print(cost, coord)
+    print("")
 
 
 #variation 4: initial state 1 with operator 2 and random neighbor
 #notice that this variation is similar to variation 2, but just replacing the operator 2 above operator 1
 def variation4(coordenates):
-    for i in range(30):
-        coord = coordenates.copy()
-        aux = []
-        cost = 0
+    coord = coordenates.copy()
+    aux = []
+    cost = 0
 
-        #n_cities just calculate the lenght of coordenates(cities)
-        n_cities = len(coord)
+    #n_cities just calculate the lenght of coordenates(cities)
+    n_cities = len(coord)
 
-        #this is a list of visited indexes for cut repetition on the random states
-        visited_indexes = []
-        while True:
-            cost = calculateCost(coord)
-            flag = False
-            print(cost)
-            while len(visited_indexes) < (n_cities**2 - n_cities)/2:
-                x = randint(0, n_cities-1)
-                y = randint(0, n_cities-1)
-                if sorted((x,y)) in visited_indexes:
-                    continue
+    #this is a list of visited indexes for cut repetition on the random states
+    visited_indexes = []
+    while True:
+        cost = calculateCost(coord)
+        flag = False
+        print(cost)
+        while len(visited_indexes) < (n_cities**2 - n_cities)/2:
+            x = randint(0, n_cities-1)
+            y = randint(0, n_cities-1)
+            if sorted((x,y)) in visited_indexes:
+                continue
 
-                visited_indexes.append(sorted((x,y)))
-                aux = operator2(coord, x, y)
-                if calculateCost(aux) < cost:
-                    coord = aux.copy()
-                    flag = True
-                    break
-            if flag == False:
+            visited_indexes.append(sorted((x,y)))
+            aux = operator2(coord, x, y)
+            if calculateCost(aux) < cost:
+                coord = aux.copy()
+                flag = True
                 break
-        print(coord,cost)
-        print(" ")
+        if flag == False:
+            break
+    print(coord,cost)
+    print(" ")
 
+#def variation5(coordenates):
+    
 
 print(variation4(coordenates))
 
