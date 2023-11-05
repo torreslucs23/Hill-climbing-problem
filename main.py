@@ -189,10 +189,29 @@ def variation4(coordenates):
     print(coord,cost)
     print(" ")
 
-#def variation5(coordenates):
-    
+#variation 5: initial state 2 with operator 1 and no random neighbor
+def variation5(coordenates):
+    shuffle(coordenates)
+    variation1(coordenates)
 
-print(variation4(coordenates))
+#variation 6: initial state 2 with operator 1 and random neighbor
+def variation6(coordenates):
+    shuffle(coordenates)
+    variation2(coordenates)
+
+
+#variation 7: initial state 2 with operator 2 and no random neighbor
+def variation7(coordenates):
+    shuffle(coordenates)
+    variation3(coordenates)
+
+
+#variation 8: initial state 2 with operator 2 and random neighbor
+def variation8(coordenates):
+    shuffle(coordenates)
+    variation4(coordenates)
+
+print(variation8(coordenates))
 
 
 
