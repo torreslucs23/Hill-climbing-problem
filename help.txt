@@ -1,2 +1,14 @@
-testando este texto
-em python
+Para rodar o código, deve ter instalado a biblioteca do pandas
+
+para instalar o pandas, faça:
+
+pip install pandas
+
+As entradas podem ser escritas no arquivo "entries.txt". O formato
+da escrita deve ser uma linha com as coordenados do eixo x, separadas por um espaço
+em seguida uma outra linha dos eixos y, separadas também por um espaço. 
+
+para rodar o programa, certifique que esteja instalado a versão 3 do python. Então
+basta rodar:
+
+python main.python

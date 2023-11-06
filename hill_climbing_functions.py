@@ -5,7 +5,7 @@ from random import randint
 
 # calculate the euclidian distance
 def calculateDistance(p1,p2):
-    return sqrt((p1[0]-p2[0])**2 + (p1[1]-p2[1])**2)
+    return round(float(sqrt((p1[0]-p2[0])**2 + (p1[1]-p2[1])**2)),4)
 
 #get the coordenates of txt
 def getCoordenates(entry):
@@ -199,9 +199,3 @@ def variation8(coordenates):
     shuffle(coordenates)
     return variation4(coordenates)
 
-
-archive = open('entries.txt', 'r')
-
-coordenates = getCoordenates(archive.readlines())
-
-print(variation4(coordenates))

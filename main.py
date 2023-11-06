@@ -1,6 +1,5 @@
 from hill_climbing_functions import *
 import pandas as pd
-import matplotlib.pyplot as plt
 
 
 #read the entries.txt
@@ -37,6 +36,6 @@ print(df)
 variations_results = list(map(list, zip(*variations_results)))
 
 with open('table.txt', 'w') as file:
-    file.write("Tabela de Dados:\n")
+    file.write("Data Table:\n")
     for row in variations_results:
         file.write('\t'.join([str(elem) for elem in row]) + '\n')
