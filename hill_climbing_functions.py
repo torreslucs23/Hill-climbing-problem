@@ -48,6 +48,14 @@ def calculateCost(sequence):
         cost += calculateDistance(sequence[i], sequence[i+1])
     return cost
 
+#this function make a list with random indexes permutations to not repeat in the variations 
+def generatePermutations(coordenates):
+    permut = []
+    for i in range(len(coordenates)):
+        for w in range(i, len(coordenates)):
+            permut.append((i,w))
+    shuffle(permut)
+    return permut
 
 
 #variation1: initial state 1 with operator 1 and no random neighbor
@@ -82,28 +90,21 @@ def variation2(coordenates):
     coord = coordenates.copy()
     aux = []
     cost = 0
-
-    #n_cities just calculate the lenght of coordenates(cities)
-    n_cities = len(coord)
-
-    #this is a list of visited indexes for cut repetition on the random states
-    visited_indexes = []
     while True:
+        #this permut variable is a list off all possibles indexes in random order
+        permut = generatePermutations(coord)
+
         cost = calculateCost(coord)
         flag = False
         print(cost)
-        while len(visited_indexes) < (n_cities**2 - n_cities)/2:
-            x = randint(0, n_cities-1)
-            y = randint(0, n_cities-1)
-            if sorted((x,y)) in visited_indexes:
-                continue
 
-            visited_indexes.append(sorted((x,y)))
-            aux = operator1(coord, x, y)
+        for i in permut:
+            aux = operator1(coord, i[0], i[1])
             if calculateCost(aux) < cost:
                 coord = aux.copy()
                 flag = True
                 break
+
         if flag == False:
             break
     calculateCost(coord)
@@ -149,27 +150,21 @@ def variation4(coordenates):
     aux = []
     cost = 0
 
-    #n_cities just calculate the lenght of coordenates(cities)
-    n_cities = len(coord)
-
-    #this is a list of visited indexes for cut repetition on the random states
-    visited_indexes = []
     while True:
+        #this permut variable is a list off all possibles indexes in random order
+        permut = generatePermutations(coord)
+
         cost = calculateCost(coord)
         flag = False
         print(cost)
-        while len(visited_indexes) < (n_cities**2 - n_cities)/2:
-            x = randint(0, n_cities-1)
-            y = randint(0, n_cities-1)
-            if sorted((x,y)) in visited_indexes:
-                continue
 
-            visited_indexes.append(sorted((x,y)))
-            aux = operator2(coord, x, y)
+        for i in permut:
+            aux = operator2(coord, i[0], i[1])
             if calculateCost(aux) < cost:
                 coord = aux.copy()
                 flag = True
                 break
+
         if flag == False:
             break
     cost = calculateCost(coord)
